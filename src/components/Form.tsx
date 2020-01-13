@@ -33,7 +33,11 @@ export const Form: React.FC<FormProps> = () => {
 
           <input
             className="EMAIL-EDITOR-form__text-input"
-            placeholder="add more people..."
+            placeholder={
+              emails.length === 0
+                ? "Enter email addresses..."
+                : "add more people..."
+            }
           />
         </div>
       </div>
