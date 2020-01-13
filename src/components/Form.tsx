@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 
 import { getRandomEmail } from "../util/random-email-generator";
+import { Email } from "../models/Email";
 
 import { Button } from "./Button";
 import { EmailBlock } from "./EmailBlock";
@@ -10,18 +11,12 @@ import "./Form.css";
 export interface FormProps {}
 
 export const Form: React.FC<FormProps> = () => {
-  const [emails, setEmails] = useState<string[]>([]);
+  const [emails, setEmails] = useState<Email[]>([]);
   const [emailInput, setEmailInput] = useState<string>("");
 
   const addEmail = useCallback(
-    (newEmail: string): boolean => {
-      if (newEmail === "") {
-        return false;
-      }
-
-      const hasEmail = emails.find(email => email === newEmail);
-
-      if (hasEmail !== undefined) {
+    (newEmail: Email): boolean => {
+      if (newEmail.address === "") {
         return false;
       }
 
@@ -43,7 +38,7 @@ export const Form: React.FC<FormProps> = () => {
       if (event.key === "Enter" || event.key === ",") {
         event.preventDefault();
 
-        addEmail(emailInput);
+        addEmail(new Email(emailInput));
         setEmailInput("");
       }
     },
@@ -52,7 +47,7 @@ export const Form: React.FC<FormProps> = () => {
 
   const emailInputBlurHandler: React.FocusEventHandler<HTMLInputElement> = useCallback(
     event => {
-      addEmail(emailInput);
+      addEmail(new Email(emailInput));
       setEmailInput("");
     },
     [addEmail, emailInput, setEmailInput]
@@ -60,7 +55,7 @@ export const Form: React.FC<FormProps> = () => {
 
   const addRandomEmail = useCallback(() => {
     const newEmail = getRandomEmail();
-    addEmail(newEmail);
+    addEmail(new Email(newEmail));
   }, [addEmail]);
 
   return (
@@ -71,7 +66,7 @@ export const Form: React.FC<FormProps> = () => {
         </div>
         <div className="EMAIL-EDITOR-form__text-area">
           {emails.map(email => (
-            <EmailBlock key={email} email={email} />
+            <EmailBlock key={email.id} email={email} />
           ))}
 
           <input
