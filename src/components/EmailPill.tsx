@@ -22,7 +22,7 @@ export const EmailPill: React.FC<EmailPillProps> = ({
       className="EMAIL-EDITOR-email-pill__remove-button"
       onClick={onClickRemove}
     >
-      x
+      ×
     </span>
   </span>
 );
