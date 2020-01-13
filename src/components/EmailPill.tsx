@@ -12,7 +12,11 @@ export const EmailPill: React.FC<EmailPillProps> = ({
   onClickRemove,
   ...otherProps
 }) => (
-  <span className="EMAIL-EDITOR-email-pill" {...otherProps}>
+  <span
+    className="EMAIL-EDITOR-email-pill"
+    {...otherProps}
+    data-testid="email-pill"
+  >
     {email}
     <span
       className="EMAIL-EDITOR-email-pill__remove-button"
