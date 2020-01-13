@@ -3,7 +3,7 @@ import React, { useState, useCallback } from "react";
 import { getRandomEmail } from "../util/random-email-generator";
 
 import { Button } from "./Button";
-import { EmailPill } from "./EmailPill";
+import { EmailBlock } from "./EmailBlock";
 
 import "./Form.css";
 
@@ -28,7 +28,7 @@ export const Form: React.FC<FormProps> = () => {
         </div>
         <div className="EMAIL-EDITOR-form__text-area">
           {emails.map(email => (
-            <EmailPill key={email} email={email} />
+            <EmailBlock key={email} email={email} />
           ))}
 
           <input
