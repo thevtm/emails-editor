@@ -2,8 +2,11 @@ import React from "react";
 
 import "./Button.css";
 
-export const Button: React.FC = ({ children }) => (
-  <button className="button foo" onClick={() => console.log("Clicked")}>
+export const Button: React.FC<React.HTMLAttributes<HTMLButtonElement>> = ({
+  children,
+  ...otherProps
+}) => (
+  <button className="EMAIL-EDITOR-button" {...otherProps}>
     {children}
   </button>
 );

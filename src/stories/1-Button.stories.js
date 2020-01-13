@@ -8,12 +8,6 @@ export default {
   component: Button
 };
 
-export const Text = () => <Button>Hello World</Button>;
-
-export const Emoji = () => (
-  <Button onClick={action("clicked")}>
-    <span role="img" aria-label="so cool">
-      😀 😎 👍 💯
-    </span>
-  </Button>
+export const AddEmail = () => (
+  <Button onClick={action("clicked")}>Add email</Button>
 );

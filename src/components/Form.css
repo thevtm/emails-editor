@@ -1,0 +1,40 @@
+.EMAIL-EDITOR-form {
+  border: solid 1px black;
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+.EMAIL-EDITOR-form__top {
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+
+  background-color: #f8f8f7;
+}
+
+.EMAIL-EDITOR-form__title {
+  margin-bottom: 20px;
+}
+
+.EMAIL-EDITOR-form__text-area {
+  padding: 10px;
+
+  border: solid 1px #c3c2cf;
+  background-color: #ffffff;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.EMAIL-EDITOR-form__text-input {
+  border: none;
+  outline: none;
+
+  flex-grow: 1;
+}
+
+.EMAIL-EDITOR-form__bottom {
+  padding: 20px;
+}

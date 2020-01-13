@@ -1,3 +1,11 @@
-.button {
+.EMAIL-EDITOR-button {
+  padding: 20px;
+
+  color: #ffffff;
   background-color: #4262ff;
+
+  border: none;
+  border-radius: 10px;
+
+  outline: none;
 }
