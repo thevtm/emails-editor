@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Email Editor</title>
+</head>
+
+<body>
+  <div id="emails-editor-a"></div>
+  <div id="emails-editor-b"></div>
+  <script src="emails-editor.js"></script>
+  <script>
+    const containerA = document.querySelector("#emails-editor-a");
+    const containerB = document.querySelector("#emails-editor-b");
+    const options = {};
+
+    eeA = EmailsEditor({
+      container: containerA,
+      ...options
+    });
+
+    eeB = EmailsEditor({
+      container: containerB,
+      ...options
+    });
+    // some code to control emails via library
+  </script>
+  <style>
+    #emails-editor-a {
+      max-width: 500px;
+      border: dashed 2px red;
+      margin-bottom: 32px;
+    }
+  </style>
+</body>
+
+</html>
