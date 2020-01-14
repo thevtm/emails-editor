@@ -12,6 +12,20 @@ export class EmailsEditor extends HTMLElement {
     shadowRoot.appendChild(Form());
   }
 
+  public getEmailsList(): string[] {
+    return Array.from(this.emailBlockEls).map(
+      el => el.getAttribute("data-email") as string
+    );
+  }
+
+  public setEmailsList(addresses: string[]): void {
+    this.clearEmailBlocks();
+
+    addresses
+      .map(address => new Email(address))
+      .map(email => this.addEmail(email));
+  }
+
   private addEmail(email: Email): void {
     let node: ChildNode | null = null;
 
@@ -26,6 +40,10 @@ export class EmailsEditor extends HTMLElement {
     const newEmailEl = EmailBlock(email, onClickRemoveHandler);
 
     node = this.textAreaEl.insertBefore(newEmailEl, this.inputEl);
+  }
+
+  private clearEmailBlocks(): void {
+    this.emailBlockEls.forEach(el => el.remove());
   }
 
   private connectedCallback() {
@@ -78,6 +96,10 @@ export class EmailsEditor extends HTMLElement {
     return this.shadowRoot!.querySelector(
       "#add-email-button"
     )! as HTMLInputElement;
+  }
+
+  private get emailBlockEls(): NodeListOf<Element> {
+    return this.textAreaEl.querySelectorAll(".email-block");
   }
 }
 

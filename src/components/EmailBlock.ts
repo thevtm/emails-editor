@@ -14,7 +14,9 @@ export const EmailBlock = (
     >
       ${email.address}
 
-      <button class="email-block__remove-button">×</button>
+      <button class="email-block__remove-button" data-test-id="email-block__remove-button">
+        ×
+      </button>
     </span>
   `
   );

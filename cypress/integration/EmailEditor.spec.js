@@ -87,4 +87,35 @@ context("Default", () => {
       cy.shadowGet("emails-editor").shadowContains(EMAIL_ADDRESS);
     });
   });
+
+  describe("EmailsEditor", () => {
+    it(`should set the emails correctly when EmailsEditor.setEmailsList is called`, () => {
+      const EMAILS_ADDRESSES = ["foo@miro.com", "bar@miro.com"];
+
+      cy.get("emails-editor").then(ee => {
+        ee.get()[0].setEmailsList(EMAILS_ADDRESSES);
+      });
+
+      getEmailBlocks().should("have.length", 2);
+
+      for (const email of EMAILS_ADDRESSES) {
+        cy.shadowGet("emails-editor").shadowContains(email);
+      }
+    });
+
+    it.only(`should get the correct emails when EmailsEditor.getEmailsList is called`, () => {
+      const EMAILS_ADDRESSES = ["foo@miro.com", "bar@miro.com"];
+
+      cy.get("emails-editor").then(subject => {
+        const ee = subject.get()[0];
+
+        return cy
+          .then(() => ee.getEmailsList())
+          .should("deep.equal", [])
+          .then(() => ee.setEmailsList(EMAILS_ADDRESSES))
+          .then(() => ee.getEmailsList())
+          .should("deep.equal", EMAILS_ADDRESSES);
+      });
+    });
+  });
 });
