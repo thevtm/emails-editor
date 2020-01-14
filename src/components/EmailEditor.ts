@@ -42,11 +42,18 @@ export class EmailsEditor extends HTMLElement {
     node = this.textAreaEl.insertBefore(newEmailEl, this.inputEl);
   }
 
+  private addEmailsFromString(addresses: string): void {
+    addresses
+      .split(",")
+      .map(address => new Email(address.trim()))
+      .map(email => this.addEmail(email));
+  }
+
   private clearEmailBlocks(): void {
     this.emailBlockEls.forEach(el => el.remove());
   }
 
-  private connectedCallback() {
+  private connectedCallback(): void {
     // Handle pressing <enter> or <comma> in input
     this.inputEl.addEventListener("keydown", event => {
       const { key } = event as KeyboardEvent;
@@ -54,27 +61,41 @@ export class EmailsEditor extends HTMLElement {
       if (key === "Enter" || key === ",") {
         event.preventDefault();
 
-        const address = this.inputEl.value.trim();
+        const inputText = this.inputEl.value.trim();
 
-        if (address === "") {
+        if (inputText === "") {
           return;
         }
 
-        this.addEmail(new Email(address));
+        this.addEmail(new Email(inputText));
         this.inputEl.value = "";
       }
     });
 
     // Handle input losing focus
     this.inputEl.addEventListener("blur", () => {
-      const address = this.inputEl.value.trim();
+      const inputText = this.inputEl.value.trim();
 
-      if (address === "") {
+      if (inputText === "") {
         return;
       }
 
-      this.addEmail(new Email(address));
+      this.addEmailsFromString(inputText);
       this.inputEl.value = "";
+    });
+
+    // Handle input paste
+    this.inputEl.addEventListener("paste", event => {
+      const inputValue = this.inputEl.value;
+      const data = event.clipboardData?.getData("text");
+
+      if (inputValue !== "" || data == null) {
+        return;
+      }
+
+      event.preventDefault();
+
+      this.addEmailsFromString(data);
     });
 
     // Handle pressing the "Add email" button
