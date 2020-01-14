@@ -32,6 +32,7 @@ export class EmailsEditor extends HTMLElement {
     const onClickRemoveHandler = () => {
       if (node != null) {
         node.remove();
+        this.dispatchChangeEvent();
       } else {
         console.warn("Failed to remove a EmailBlock node!", { email });
       }
@@ -40,6 +41,16 @@ export class EmailsEditor extends HTMLElement {
     const newEmailEl = EmailBlock(email, onClickRemoveHandler);
 
     node = this.textAreaEl.insertBefore(newEmailEl, this.inputEl);
+  }
+
+  private dispatchChangeEvent(): void {
+    const event = new CustomEvent("change", {
+      bubbles: false,
+      cancelable: false,
+      composed: true
+    });
+
+    this.dispatchEvent(event);
   }
 
   private addEmailsFromString(addresses: string): void {
@@ -51,6 +62,7 @@ export class EmailsEditor extends HTMLElement {
 
   private clearEmailBlocks(): void {
     this.emailBlockEls.forEach(el => el.remove());
+    this.dispatchChangeEvent();
   }
 
   private connectedCallback(): void {
@@ -67,8 +79,9 @@ export class EmailsEditor extends HTMLElement {
           return;
         }
 
-        this.addEmail(new Email(inputText));
+        this.addEmailsFromString(inputText);
         this.inputEl.value = "";
+        this.dispatchChangeEvent();
       }
     });
 
@@ -82,6 +95,7 @@ export class EmailsEditor extends HTMLElement {
 
       this.addEmailsFromString(inputText);
       this.inputEl.value = "";
+      this.dispatchChangeEvent();
     });
 
     // Handle input paste
@@ -96,12 +110,14 @@ export class EmailsEditor extends HTMLElement {
       event.preventDefault();
 
       this.addEmailsFromString(data);
+      this.dispatchChangeEvent();
     });
 
     // Handle pressing the "Add email" button
     this.addEmailButton.addEventListener("click", () => {
       const newEmail = getRandomEmail();
       this.addEmail(new Email(newEmail));
+      this.dispatchChangeEvent();
     });
 
     // Handle pressing the "Get emails count" button
