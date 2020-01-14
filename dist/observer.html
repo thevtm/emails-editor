@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Email Editor</title>
+</head>
+
+<body>
+  <div id="emails-editor"></div>
+  <h2 id="changes-counter">Changes: <span id="changes-counter-number">0</span></h2>
+  <script src="emails-editor.js"></script>
+  <script>
+    const container = document.querySelector("#emails-editor");
+    const options = {};
+
+    ee = EmailsEditor({
+      container,
+      ...options
+    });
+    // some code to control emails via library
+
+    let changesCounter = 0;
+    ee.addEventListener("change", () => {
+      document.querySelector("#changes-counter-number").innerHTML = ++changesCounter;
+    })
+  </script>
+</body>
+
+</html>
