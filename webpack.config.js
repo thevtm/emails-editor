@@ -1,6 +1,8 @@
 module.exports = {
   output: {
-    filename: "emails-editor.js"
+    filename: "emails-editor.js",
+    library: "EmailsEditor",
+    libraryTarget: "umd"
   },
   module: {
     rules: [

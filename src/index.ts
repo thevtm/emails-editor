@@ -1,14 +1,10 @@
-import { EmailsEditor } from "./components/EmailEditor";
-
-import "./components/EmailEditor";
+const { EmailsEditor } = require("./components/EmailEditor");
 
 interface IEmailsEditorOptions {
   container: HTMLElement;
 }
 
-(window as any).EmailsEditor = ({
-  container
-}: IEmailsEditorOptions): EmailsEditor => {
+module.exports = ({ container }: IEmailsEditorOptions): EmailsEditor => {
   const ee = document.createElement("emails-editor") as EmailsEditor;
   container.appendChild(ee);
 
