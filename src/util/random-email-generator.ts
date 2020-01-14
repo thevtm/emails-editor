@@ -1,5 +1,3 @@
-import { random } from "lodash";
-
 const FAKE_RANDOM_DATA = [
   "ralamosm@verizon.net",
   "russotto@aol.com",
@@ -104,6 +102,6 @@ const FAKE_RANDOM_DATA = [
 ];
 
 export const getRandomEmail = () => {
-  const randomIndex = random(0, FAKE_RANDOM_DATA.length);
+  const randomIndex = Math.floor(Math.random() * FAKE_RANDOM_DATA.length);
   return FAKE_RANDOM_DATA[randomIndex];
 };

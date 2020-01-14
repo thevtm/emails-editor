@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Email Editor</title>
+  </head>
+
+  <body>
+    <div id="emails-editor"></div>
+    <script src="emails-editor.js"></script>
+    <script>
+      const container = document.querySelector("#emails-editor");
+      const options = {};
+
+      ee = EmailsEditor({ container, ...options });
+      // some code to control emails via library
+    </script>
+  </body>
+</html>

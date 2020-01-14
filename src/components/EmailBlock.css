@@ -1,9 +1,9 @@
-.EMAIL-EDITOR-email-block {
+.email-block {
   padding: 5px 10px;
   background-color: #e0ebff;
   border-radius: 10%;
 }
 
-.EMAIL-EDITOR-email-block__remove-button {
+.email-block__remove-button {
   padding-left: 8px;
 }
