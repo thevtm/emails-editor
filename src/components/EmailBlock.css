@@ -4,6 +4,10 @@
   border-radius: 10%;
 }
 
+.email-block--invalid {
+  text-decoration: underline wavy red;
+}
+
 .email-block__remove-button {
   padding-left: 8px;
 }

@@ -103,7 +103,7 @@ context("Default", () => {
       }
     });
 
-    it.only(`should get the correct emails when EmailsEditor.getEmailsList is called`, () => {
+    it(`should get the correct emails when EmailsEditor.getEmailsList is called`, () => {
       const EMAILS_ADDRESSES = ["foo@miro.com", "bar@miro.com"];
 
       cy.get("emails-editor").then(subject => {
@@ -120,7 +120,7 @@ context("Default", () => {
   });
 
   describe("EmailBlock", () => {
-    it.only(`should be removed when the "×" button is pressed`, () => {
+    it(`should be removed when the "×" button is pressed`, () => {
       const EMAILS_ADDRESSES = ["foo@miro.com", "bar@miro.com"];
 
       cy.get("emails-editor").then(ee => {
@@ -136,6 +136,20 @@ context("Default", () => {
       cy.shadowGet("emails-editor")
         .shadowContains(EMAILS_ADDRESSES[1])
         .should("not.exist");
+    });
+
+    it(`should have a red underline when email address is invalid`, () => {
+      const EMAIL_INVALID = "foo";
+      const EMAIL_VALID = "john@miro.com";
+
+      cy.get("emails-editor").then(ee => {
+        ee.get()[0].setEmailsList([EMAIL_INVALID, EMAIL_VALID]);
+      });
+
+      cy.shadowGet("emails-editor")
+        .shadowContains(EMAIL_INVALID)
+        .shadowLast()
+        .should("have.class", "email-block--invalid");
     });
   });
 });

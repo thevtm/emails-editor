@@ -1,4 +1,4 @@
-// import * as EmailValidator from "email-validator";
+import { isValidEmailAddress } from "../util/email-validator";
 
 export class Email {
   public readonly address: string;
@@ -6,7 +6,6 @@ export class Email {
 
   constructor(address: string) {
     this.address = address;
-    this.isValid = true;
-    // this.isValid = EmailValidator.validate(address);
+    this.isValid = isValidEmailAddress(address);
   }
 }

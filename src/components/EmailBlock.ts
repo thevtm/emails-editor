@@ -8,7 +8,7 @@ export const EmailBlock = (
   const el = htmlToElement(
     `
     <span
-      class="email-block"
+      class="email-block${email.isValid ? "" : " email-block--invalid"}"
       data-test-id="email-block"
       data-email="${email.address}"
     >
