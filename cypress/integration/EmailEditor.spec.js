@@ -111,6 +111,23 @@ context("Default", () => {
 
       cy.shadowGet("emails-editor").shadowContains(EMAIL_ADDRESS);
     });
+
+    it.only("should add a new Email is when loses focus", () => {
+      const EMAIL_ADDRESS = "borat@gmail.kz";
+
+      cy.shadowGet(`emails-editor`)
+        .shadowFind(`[data-test-id="form-input"]`)
+        .shadowTrigger("blur");
+
+      getEmailBlocks().should("have.length", 0);
+
+      cy.shadowGet(`emails-editor`)
+        .shadowFind(`[data-test-id="form-input"]`)
+        .shadowType(EMAIL_ADDRESS)
+        .shadowTrigger("blur");
+
+      cy.shadowGet("emails-editor").shadowContains(EMAIL_ADDRESS);
+    });
   });
 
   describe("EmailsEditor", () => {
