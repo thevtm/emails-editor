@@ -118,4 +118,24 @@ context("Default", () => {
       });
     });
   });
+
+  describe("EmailBlock", () => {
+    it.only(`should be removed when the "×" button is pressed`, () => {
+      const EMAILS_ADDRESSES = ["foo@miro.com", "bar@miro.com"];
+
+      cy.get("emails-editor").then(ee => {
+        ee.get()[0].setEmailsList(EMAILS_ADDRESSES);
+      });
+
+      cy.shadowGet("emails-editor")
+        .shadowContains(EMAILS_ADDRESSES[1])
+        .shadowLast()
+        .shadowFind(`[data-test-id="email-block__remove-button"]`)
+        .shadowClick();
+
+      cy.shadowGet("emails-editor")
+        .shadowContains(EMAILS_ADDRESSES[1])
+        .should("not.exist");
+    });
+  });
 });
