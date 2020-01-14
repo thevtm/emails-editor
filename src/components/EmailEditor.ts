@@ -82,6 +82,14 @@ export class EmailsEditor extends HTMLElement {
       const newEmail = getRandomEmail();
       this.addEmail(new Email(newEmail));
     });
+
+    // Handle pressing the "Get emails count" button
+    this.getEmailsCountButton.addEventListener("click", () => {
+      const count = this.emailBlockEls.length;
+      const message = `Emails: ${count}`;
+
+      window.alert(message);
+    });
   }
 
   private get inputEl(): HTMLInputElement {
@@ -95,6 +103,12 @@ export class EmailsEditor extends HTMLElement {
   private get addEmailButton(): HTMLInputElement {
     return this.shadowRoot!.querySelector(
       "#add-email-button"
+    )! as HTMLInputElement;
+  }
+
+  private get getEmailsCountButton(): HTMLInputElement {
+    return this.shadowRoot!.querySelector(
+      "#get-emails-count"
     )! as HTMLInputElement;
   }
 

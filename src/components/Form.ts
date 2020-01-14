@@ -27,10 +27,10 @@ template.innerHTML = `
 
       <div class="form__bottom">
         <button id="add-email-button" class="button" data-test-id="add-email-button">
-            Add email
+          Add email
         </button>
 
-        <button id="get-emails-count" class="button">
+        <button id="get-emails-count" class="button" data-test-id="get-emails-button">
           Get emails count
         </button>
       </div>

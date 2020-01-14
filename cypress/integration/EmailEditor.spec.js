@@ -38,6 +38,31 @@ context("Default", () => {
     });
   });
 
+  describe(`"Get emails count" button`, () => {
+    it.only(`should open an alert with the text correct count of emails when clicked `, () => {
+      const stub = cy.stub();
+      cy.on("window:alert", stub);
+
+      cy.shadowGet(`emails-editor`)
+        .shadowFind(`[data-test-id="get-emails-button"]`)
+        .shadowClick()
+        .then(() => {
+          expect(stub.getCall(0)).to.be.calledWith("Emails: 0");
+        });
+
+      cy.get("emails-editor").then(ee => {
+        ee.get()[0].setEmailsList(["foo", "bar@miro.com"]);
+      });
+
+      cy.shadowGet(`emails-editor`)
+        .shadowFind(`[data-test-id="get-emails-button"]`)
+        .shadowClick()
+        .then(() => {
+          expect(stub.getCall(1)).to.be.calledWith("Emails: 2");
+        });
+    });
+  });
+
   describe("Input", () => {
     it("should add a new Email when an <enter> is pressed", () => {
       const EMAIL_ADDRESS = "john@miro.com";
