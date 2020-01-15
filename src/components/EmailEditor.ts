@@ -40,7 +40,8 @@ export class EmailsEditor extends HTMLElement {
 
     const newEmailEl = EmailBlock(email, onClickRemoveHandler);
 
-    node = this.textAreaEl.insertBefore(newEmailEl, this.inputEl);
+    node = this.textAreaEl.insertBefore(newEmailEl, this.inputWrapperEl);
+    this.textAreaEl.scrollBy(0, 9999);
   }
 
   private dispatchChangeEvent(): void {
@@ -131,6 +132,12 @@ export class EmailsEditor extends HTMLElement {
 
   private get inputEl(): HTMLInputElement {
     return this.shadowRoot!.querySelector("#input")! as HTMLInputElement;
+  }
+
+  private get inputWrapperEl(): HTMLDivElement {
+    return this.shadowRoot!.querySelector(
+      ".form__input-wrapper"
+    )! as HTMLInputElement;
   }
 
   private get textAreaEl(): HTMLTextAreaElement {

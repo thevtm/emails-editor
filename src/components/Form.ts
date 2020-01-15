@@ -12,16 +12,18 @@ template.innerHTML = `
     <div class="form" data-test-id="form">
       <div class="form__top">
         <div class="form__title">
-          Share <b>board names</b> with others
+          Share <b>Board names</b> with others
         </div>
 
         <div id="text-area" class="form__text-area" data-test-id="text-area">
-          <input
-            id="input"
-            class="form__text-input"
-            placeholder="add more people..."
-            data-test-id="form-input"
-          />
+          <div class="form__input-wrapper">
+            <input
+              id="input"
+              class="form__text-input"
+              placeholder="add more people..."
+              data-test-id="form-input"
+            />
+          </div>
         </div>
       </div>
 

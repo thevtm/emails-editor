@@ -1,40 +1,66 @@
 .form {
-  border: solid 1px black;
+  padding: 50px 100px;
+
+  font-family: 'Open Sans', sans-serif;
+
+  box-shadow: 0px 5px 10px 4px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 
   overflow: hidden;
 }
 
 .form__top {
-  padding-top: 20px;
-  padding-right: 20px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-
+  margin-bottom: 90px;
   background-color: #f8f8f7;
 }
 
 .form__title {
-  margin-bottom: 20px;
+  font-size: 40px;
+  margin-bottom: 40px;
 }
 
 .form__text-area {
-  padding: 10px;
+  padding: 20px 10px;
+  height: 192px;
 
   border: solid 1px #c3c2cf;
   background-color: #ffffff;
 
   display: flex;
+  align-content: flex-start;
   flex-wrap: wrap;
+
+  overflow-y: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.form__text-area::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.form__text-area {
+  -ms-overflow-style: none;
+}
+
+.form__input-wrapper {
+  height: 48px;
+
+  display: flex;
+  justify-content: center;
+
+  flex-grow: 1;
 }
 
 .form__text-input {
+  font-size: 24px;
+
   border: none;
   outline: none;
 
   flex-grow: 1;
 }
 
-.form__bottom {
-  padding: 20px;
+.form__bottom .button:not(:last-child) {
+  margin-right: 30px;
 }
